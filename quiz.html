@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz in Progress — Quiz Master</title>
+  <meta name="description" content="Answer fast, beat the clock, and lock in your score.">
+  <meta name="theme-color" content="#1B1533">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dark.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="quiz">
+
+  <header class="quiz-header">
+    <div class="container quiz-header-inner">
+      <button type="button" id="quitBtn" class="btn-icon" aria-label="Quit quiz">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <div class="quiz-header-info">
+        <span class="category-badge" id="categoryBadge">Category</span>
+        <span class="question-counter" id="questionCounter">Question 1 of 10</span>
+      </div>
+
+      <div class="timer-display" id="timerDisplay">
+        <svg class="timer-ring" viewBox="0 0 44 44" aria-hidden="true">
+          <circle class="timer-ring-track" cx="22" cy="22" r="18"/>
+          <circle class="timer-ring-fill" id="timerRingFill" cx="22" cy="22" r="18"/>
+        </svg>
+        <span class="timer-text" id="timerText" aria-label="Seconds remaining">20</span>
+      </div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </header>
+
+  <main class="quiz-main" id="quizMain">
+    <div class="container">
+      <div class="score-strip">
+        <span class="score-badge">Score <span id="liveScore" class="mono-num">0</span>/<span id="liveTotal" class="mono-num">10</span></span>
+      </div>
+
+      <div class="question-card">
+        <span class="difficulty-tag" id="difficultyTag">Easy</span>
+        <h2 class="question-text" id="questionText" tabindex="-1"></h2>
+        <div class="options-grid" id="optionsGrid"></div>
+        <p class="explanation-box" id="explanationBox" hidden></p>
+      </div>
+
+      <div class="quiz-actions">
+        <button type="button" class="btn btn-primary btn-large" id="nextBtn" disabled>Next Question</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="error-state" id="errorState" hidden>
+    <div class="container">
+      <h2>Couldn't load the questions</h2>
+      <p>Check your connection and try again, or head back and pick a different category.</p>
+      <a href="index.html" class="btn btn-primary">Back to Home</a>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="quitModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="quitModalTitle">
+      <h3 id="quitModalTitle">Quit this quiz?</h3>
+      <p>Your progress won't be saved. You'll head back to the home page.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="cancelQuit" data-autofocus>Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmQuit">Quit</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <script src="js/utils.js" defer></script>
+  <script src="js/storage.js" defer></script>
+  <script src="js/theme.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/timer.js" defer></script>
+  <script src="js/question.js" defer></script>
+  <script src="js/quiz.js" defer></script>
+</body>
+</html>
